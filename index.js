@@ -11,21 +11,29 @@ let contract;
 let maticProvider;
 
 async function connectContract() {
-  const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-  const account = accounts[0];
+  try {
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    const account = accounts[0];
 
-  maticProvider = new POSClient({
-    network: 'testnet', // or 'mainnet' for the mainnet network
-    version: 'mumbai', // or 'v1' for the mainnet network
-    parentProvider: new ethers.providers.JsonRpcProvider('https://matic-mumbai.chainstacklabs.com'), // Use the correct RPC URL for the Matic network
-    maticProvider: new ethers.providers.JsonRpcProvider('https://matic-mumbai.chainstacklabs.com'), // Use the correct RPC URL for the Matic network
-  });
+    // Update the wallet address display
+    const walletAddressDiv = document.getElementById("wallet-address");
+    walletAddressDiv.textContent = account ? account : 'Not connected';
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner(account);
-  contract = new ethers.Contract(contractAddress, contractABI, signer);
+    maticProvider = new POSClient({
+      network: 'testnet', // or 'mainnet' for the mainnet network
+      version: 'mumbai', // or 'v1' for the mainnet network
+      parentProvider: new ethers.providers.JsonRpcProvider('https://matic-mumbai.chainstacklabs.com'), // Use the correct RPC URL for the Matic network
+      maticProvider: new ethers.providers.JsonRpcProvider('https://matic-mumbai.chainstacklabs.com'), // Use the correct RPC URL for the Matic network
+    });
 
-  return contract;
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner(account);
+    contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+    return contract;
+  } catch (error) {
+    console.error("An error occurred while trying to connect to the wallet: ", error);
+  }
 }
 
 const mintButton = document.getElementById("mint-button");
@@ -77,9 +85,20 @@ async function displayNFTs() {
 
   const nftBack = document.createElement("div");
   nftBack.classList.add("nft-back", `rarity-${rarity}`);
-  if (shiny === 1) {
-    nftBack.classList.add("shiny");
-  }
+  if (shiny == 1 & rarity == 1) {
+    nftBack.classList.add("special-shiny-1");
+  } else if (shiny == 1 & rarity == 2) {
+    nftBack.classList.add("special-shiny-2");
+  } else if (shiny == 1 & rarity == 3) {
+    nftBack.classList.add("special-shiny-3");
+  } else if (shiny == 1 & rarity == 4) {
+    nftBack.classList.add("special-shiny-4");
+  } else if (shiny == 1 & rarity == 5) {
+    nftBack.classList.add("special-shiny-5");
+  } else if (shiny == 1 & rarity == 6) {
+    nftBack.classList.add("special-shiny-6");
+}
+	
   nftBack.textContent = `Rarity: ${rarity}\nShiny: ${shiny}`;
 
   nftCard.appendChild(nftFront);

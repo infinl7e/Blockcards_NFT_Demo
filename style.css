@@ -28,8 +28,8 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10px;
-  padding: 10px;
+  margin: 13px;
+  padding: 13px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   perspective: 1000px; /* Enable 3D space for children */
 
@@ -88,28 +88,54 @@ h1 {
   background-color: darkgrey;
 }
 
+.nft-back.special-shiny-1 {
+  border: thick double #ececec;
+  box-shadow: 0 0 10px #ececec;
+}
+
 .nft-back.rarity-2 {
   background-color: green;
+}
+
+.nft-back.special-shiny-2 {
+  border: thick double #c1f880;
+  box-shadow: 0 0 10px #c1f880;
 }
 
 .nft-back.rarity-3 {
   background-color: blue;
 }
 
+.nft-back.special-shiny-3 {
+  border: thick double #0073ff;
+  box-shadow: 0 0 10px #0073ff;
+}
+
 .nft-back.rarity-4 {
   background-color: purple;
+}
+
+.nft-back.special-shiny-4 {
+  border: thick double #ff00ff;
+  box-shadow: 0 0 10px #ff00ff;
 }
 
 .nft-back.rarity-5 {
   background-color: gold;
 }
 
+.nft-back.special-shiny-5 {
+  border: thick double #fff200;
+  box-shadow: 0 0 10px #fff200;
+}
+
 .nft-back.rarity-6 {
   background-color: red;
 }
 
-.nft-back.shiny {
-  filter: hue-rotate(270deg));
+.nft-back.special-shiny-6 {
+  border: thick double #f95959;
+  box-shadow: 0 0 10px red;
 }
 
 
@@ -132,4 +158,21 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#wallet-address {
+  padding: 10px 20px;
+  background-color: #222831;
+  color: #ffffff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
 }
